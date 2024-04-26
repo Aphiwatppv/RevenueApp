@@ -24,8 +24,8 @@
             
         </Border.Background>
     <Border CornerRadius="10"
-            Background="AliceBlue"
-            Opacity="0.75">
+            Background="White"
+            Opacity="0.95">
             
         <Grid>
             <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Revenue App"
                            Grid.Column="0"
-                           Foreground="Black"
+                           Foreground="Green"
                            FontSize="25"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
