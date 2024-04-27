@@ -59,6 +59,20 @@ namespace DataAccess.Services
 
             });
         }
+
+        public async Task<CurrentDayExpense?> CurrentDayExpenseAsync()
+        {
+            var result = await _sqlAccessInternal.LoadDataAsync<CurrentDayExpense, dynamic>(storedProcedure: "dbo.spCurrentDayExpense", new { });
+            return result.FirstOrDefault();
+        }
+
+        public async Task<CurrentMonthExpense?> CurrentMonthExpenseAsync()
+        {
+            var result = await _sqlAccessInternal.LoadDataAsync<CurrentMonthExpense, dynamic>(storedProcedure: "dbo.spCurrentDayExpense", new { });
+            return result.FirstOrDefault();
+        }
+
+
         #endregion
 
         #region DetailTypesServices
@@ -75,7 +89,7 @@ namespace DataAccess.Services
             await _sqlAccessInternal.UpdateAsync(storedProcedure: "dbo.spAddDetailIncomeExpense", new
             {
 
-                DetailId = DetailTypes.DetailId,
+
                 Detail = DetailTypes.Detail,
                 Type = DetailTypes.Type
 

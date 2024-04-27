@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevenueSystemBacked", "RevenueSystemBacked\RevenueSystemBacked.csproj", "{63FD9D24-8D00-4EFC-8730-D39802BEC792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevenueSystemBacked", "RevenueSystemBacked\RevenueSystemBacked.csproj", "{63FD9D24-8D00-4EFC-8730-D39802BEC792}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RevenueDatabase", "RevenueDatabase\RevenueDatabase.sqlproj", "{A492E8B9-7ABB-4499-87B1-D76660B367AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8F32CD94-4C2D-4869-9A63-A5FA09493F75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{8F32CD94-4C2D-4869-9A63-A5FA09493F75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestRevenueBacked", "UnitTestRevenueBacked\UnitTestRevenueBacked.csproj", "{D449C771-9401-4392-A7C4-2F8E256AA953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestRevenueBacked", "UnitTestRevenueBacked\UnitTestRevenueBacked.csproj", "{D449C771-9401-4392-A7C4-2F8E256AA953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessOldFrameWork4_6", "DataAccessOldFrameWork4_6\DataAccessOldFrameWork4_6.csproj", "{444EA39F-8FDD-484C-BC06-8B71F3AF7084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{D449C771-9401-4392-A7C4-2F8E256AA953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D449C771-9401-4392-A7C4-2F8E256AA953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D449C771-9401-4392-A7C4-2F8E256AA953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{444EA39F-8FDD-484C-BC06-8B71F3AF7084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{444EA39F-8FDD-484C-BC06-8B71F3AF7084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{444EA39F-8FDD-484C-BC06-8B71F3AF7084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{444EA39F-8FDD-484C-BC06-8B71F3AF7084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

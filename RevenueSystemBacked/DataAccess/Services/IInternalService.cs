@@ -4,6 +4,8 @@ namespace DataAccess.Services
 {
     public interface IInternalService
     {
+        Task<CurrentDayExpense?> CurrentDayExpenseAsync();
+        Task<CurrentMonthExpense?> CurrentMonthExpenseAsync();
         Task DeleteDetailTypesAsync(DetailTypes DetailTypes);
         Task DeleteRecordAsync(int _RecordId);
         Task<IEnumerable<DetailTypes>> GetAllDetailTypesAsync();

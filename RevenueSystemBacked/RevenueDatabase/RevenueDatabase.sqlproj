@@ -72,6 +72,11 @@
     <Build Include="dbo\StoredProcedures\Detail\spDeleteDetailIncomeExpense.sql" />
     <Build Include="dbo\StoredProcedures\Detail\spUpdateDetailIncomeExpense.sql" />
     <Build Include="dbo\StoredProcedures\Detail\spGetAllDetails.sql" />
+    <Build Include="dbo\StoredProcedures\spCountExpenseIncomeRecordTB.sql" />
+    <Build Include="dbo\StoredProcedures\spAvgExpensePerDay.sql" />
+    <Build Include="dbo\StoredProcedures\spAvgExpensePerMonth.sql" />
+    <Build Include="dbo\StoredProcedures\spCurrentDayExpense.sql" />
+    <Build Include="dbo\StoredProcedures\spCurrentMonthExpense.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RevenueDatabase.publish.xml" />
