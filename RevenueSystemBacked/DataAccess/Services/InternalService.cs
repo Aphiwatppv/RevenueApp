@@ -72,7 +72,15 @@ namespace DataAccess.Services
             return result.FirstOrDefault();
         }
 
+        public async Task<IEnumerable<DailyExpenseSummary>> DailyExpenseSummariesAsync(decimal limit)
+        {
+            var result = await _sqlAccessInternal.LoadDataAsync<DailyExpenseSummary, dynamic>(storedProcedure: "dbo.spGetDailyExpenseSummary", new
+            {
+                limit = limit
+            });
 
+            return result;
+        }
         #endregion
 
         #region DetailTypesServices

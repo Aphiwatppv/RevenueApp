@@ -29,15 +29,23 @@ namespace DailyRecordRevenueApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             panelTop = new Panel();
+            pictureBox2 = new PictureBox();
             label8 = new Label();
             btnMinimize = new Button();
             btnExit = new Button();
             panelBottom = new Panel();
+            label9 = new Label();
+            pictureBox1 = new PictureBox();
+            labeldatetime = new Label();
             MonthlyCurrenttxt = new Label();
             DialyCurrentDaytxt = new Label();
-            labeldatetime = new Label();
             panelMain = new Panel();
+            panel4 = new Panel();
+            statusLabel = new Label();
+            panel3 = new Panel();
+            dgvSummary = new DataGridView();
             panel2 = new Panel();
             buttonAddDetail = new Button();
             txtdetail = new TextBox();
@@ -64,8 +72,13 @@ namespace DailyRecordRevenueApp
             textBoxAccount = new TextBox();
             dataGridViewRecord = new DataGridView();
             panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMain.SuspendLayout();
+            panel4.SuspendLayout();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSummary).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecord).BeginInit();
@@ -74,23 +87,35 @@ namespace DailyRecordRevenueApp
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(47, 47, 47);
+            panelTop.Controls.Add(pictureBox2);
             panelTop.Controls.Add(label8);
             panelTop.Controls.Add(btnMinimize);
             panelTop.Controls.Add(btnExit);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1452, 37);
+            panelTop.Size = new Size(1659, 60);
             panelTop.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Dock = DockStyle.Left;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(75, 60);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Underline);
+            label8.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Underline);
             label8.ForeColor = SystemColors.ButtonHighlight;
-            label8.Location = new Point(615, 6);
+            label8.Location = new Point(98, 9);
             label8.Name = "label8";
-            label8.Size = new Size(191, 21);
+            label8.Size = new Size(286, 32);
             label8.TabIndex = 2;
             label8.Text = "Expense Income Record";
             // 
@@ -99,10 +124,11 @@ namespace DailyRecordRevenueApp
             btnMinimize.Dock = DockStyle.Right;
             btnMinimize.FlatAppearance.BorderSize = 0;
             btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.Font = new Font("Segoe UI", 15F);
             btnMinimize.ForeColor = Color.White;
-            btnMinimize.Location = new Point(1302, 0);
+            btnMinimize.Location = new Point(1509, 0);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(75, 37);
+            btnMinimize.Size = new Size(75, 60);
             btnMinimize.TabIndex = 1;
             btnMinimize.Text = "-";
             btnMinimize.UseVisualStyleBackColor = true;
@@ -113,10 +139,11 @@ namespace DailyRecordRevenueApp
             btnExit.Dock = DockStyle.Right;
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Segoe UI", 15F);
             btnExit.ForeColor = Color.White;
-            btnExit.Location = new Point(1377, 0);
+            btnExit.Location = new Point(1584, 0);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(75, 37);
+            btnExit.Size = new Size(75, 60);
             btnExit.TabIndex = 0;
             btnExit.Text = "X";
             btnExit.UseVisualStyleBackColor = true;
@@ -124,22 +151,55 @@ namespace DailyRecordRevenueApp
             // 
             // panelBottom
             // 
-            panelBottom.BackColor = Color.FromArgb(47, 47, 47);
-            panelBottom.Controls.Add(MonthlyCurrenttxt);
-            panelBottom.Controls.Add(DialyCurrentDaytxt);
+            panelBottom.BackColor = Color.FromArgb(51, 51, 51);
+            panelBottom.Controls.Add(label9);
+            panelBottom.Controls.Add(pictureBox1);
             panelBottom.Controls.Add(labeldatetime);
             panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Location = new Point(0, 668);
+            panelBottom.Location = new Point(0, 698);
             panelBottom.Name = "panelBottom";
-            panelBottom.Size = new Size(1452, 37);
+            panelBottom.Size = new Size(1659, 37);
             panelBottom.TabIndex = 1;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
+            label9.ForeColor = SystemColors.ButtonHighlight;
+            label9.Location = new Point(1347, 7);
+            label9.Name = "label9";
+            label9.Size = new Size(237, 21);
+            label9.TabIndex = 4;
+            label9.Text = "Developed by Aphiwat Company";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = DockStyle.Right;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(1594, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(65, 37);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
+            // labeldatetime
+            // 
+            labeldatetime.AutoSize = true;
+            labeldatetime.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
+            labeldatetime.ForeColor = Color.White;
+            labeldatetime.Location = new Point(12, 7);
+            labeldatetime.Name = "labeldatetime";
+            labeldatetime.Size = new Size(48, 21);
+            labeldatetime.TabIndex = 0;
+            labeldatetime.Text = "Clock";
             // 
             // MonthlyCurrenttxt
             // 
             MonthlyCurrenttxt.AutoSize = true;
             MonthlyCurrenttxt.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
             MonthlyCurrenttxt.ForeColor = SystemColors.ButtonHighlight;
-            MonthlyCurrenttxt.Location = new Point(615, 7);
+            MonthlyCurrenttxt.Location = new Point(532, 7);
             MonthlyCurrenttxt.Name = "MonthlyCurrenttxt";
             MonthlyCurrenttxt.Size = new Size(90, 21);
             MonthlyCurrenttxt.TabIndex = 2;
@@ -150,46 +210,78 @@ namespace DailyRecordRevenueApp
             DialyCurrentDaytxt.AutoSize = true;
             DialyCurrentDaytxt.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
             DialyCurrentDaytxt.ForeColor = SystemColors.ButtonHighlight;
-            DialyCurrentDaytxt.Location = new Point(12, 7);
+            DialyCurrentDaytxt.Location = new Point(7, 7);
             DialyCurrentDaytxt.Name = "DialyCurrentDaytxt";
             DialyCurrentDaytxt.Size = new Size(90, 21);
             DialyCurrentDaytxt.TabIndex = 1;
             DialyCurrentDaytxt.Text = "CurrentDay";
             // 
-            // labeldatetime
-            // 
-            labeldatetime.AutoSize = true;
-            labeldatetime.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
-            labeldatetime.ForeColor = SystemColors.ButtonHighlight;
-            labeldatetime.Location = new Point(1267, 7);
-            labeldatetime.Name = "labeldatetime";
-            labeldatetime.Size = new Size(48, 21);
-            labeldatetime.TabIndex = 0;
-            labeldatetime.Text = "Clock";
-            // 
             // panelMain
             // 
             panelMain.BackColor = Color.White;
+            panelMain.Controls.Add(panel4);
+            panelMain.Controls.Add(panel3);
+            panelMain.Controls.Add(dgvSummary);
             panelMain.Controls.Add(panel2);
             panelMain.Controls.Add(panel1);
             panelMain.Controls.Add(dataGridViewRecord);
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(0, 37);
+            panelMain.Location = new Point(0, 60);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1452, 631);
+            panelMain.Size = new Size(1659, 638);
             panelMain.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(47, 47, 47);
+            panel4.Controls.Add(statusLabel);
+            panel4.Location = new Point(999, 6);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(343, 41);
+            panel4.TabIndex = 5;
+            // 
+            // statusLabel
+            // 
+            statusLabel.AutoSize = true;
+            statusLabel.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
+            statusLabel.ForeColor = SystemColors.ButtonHighlight;
+            statusLabel.Location = new Point(14, 8);
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new Size(52, 21);
+            statusLabel.TabIndex = 1;
+            statusLabel.Text = "Status";
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(47, 47, 47);
+            panel3.Controls.Add(DialyCurrentDaytxt);
+            panel3.Controls.Add(MonthlyCurrenttxt);
+            panel3.Location = new Point(5, 7);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(974, 41);
+            panel3.TabIndex = 4;
+            // 
+            // dgvSummary
+            // 
+            dgvSummary.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSummary.Location = new Point(999, 54);
+            dgvSummary.Name = "dgvSummary";
+            dgvSummary.Size = new Size(343, 578);
+            dgvSummary.TabIndex = 3;
             // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(47, 47, 47);
             panel2.Controls.Add(buttonAddDetail);
             panel2.Controls.Add(txtdetail);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label12);
             panel2.Controls.Add(label13);
             panel2.Controls.Add(txtTypes);
-            panel2.Location = new Point(1222, 29);
+            panel2.ForeColor = Color.White;
+            panel2.Location = new Point(1363, 445);
             panel2.Name = "panel2";
-            panel2.Size = new Size(211, 185);
+            panel2.Size = new Size(292, 185);
             panel2.TabIndex = 2;
             // 
             // buttonAddDetail
@@ -198,9 +290,9 @@ namespace DailyRecordRevenueApp
             buttonAddDetail.FlatAppearance.BorderSize = 0;
             buttonAddDetail.FlatStyle = FlatStyle.Flat;
             buttonAddDetail.ForeColor = Color.FromArgb(47, 47, 47);
-            buttonAddDetail.Location = new Point(22, 125);
+            buttonAddDetail.Location = new Point(71, 125);
             buttonAddDetail.Name = "buttonAddDetail";
-            buttonAddDetail.Size = new Size(166, 37);
+            buttonAddDetail.Size = new Size(208, 37);
             buttonAddDetail.TabIndex = 15;
             buttonAddDetail.Text = "Add";
             buttonAddDetail.UseVisualStyleBackColor = false;
@@ -210,21 +302,24 @@ namespace DailyRecordRevenueApp
             // 
             txtdetail.Location = new Point(71, 46);
             txtdetail.Name = "txtdetail";
-            txtdetail.Size = new Size(121, 23);
+            txtdetail.Size = new Size(208, 23);
             txtdetail.TabIndex = 9;
             // 
             // label10
             // 
             label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Underline);
+            label10.ForeColor = Color.White;
             label10.Location = new Point(71, 10);
             label10.Name = "label10";
-            label10.Size = new Size(80, 15);
+            label10.Size = new Size(115, 21);
             label10.TabIndex = 8;
             label10.Text = "Add Category";
             // 
             // label12
             // 
             label12.AutoSize = true;
+            label12.ForeColor = Color.White;
             label12.Location = new Point(28, 91);
             label12.Name = "label12";
             label12.Size = new Size(37, 15);
@@ -234,6 +329,7 @@ namespace DailyRecordRevenueApp
             // label13
             // 
             label13.AutoSize = true;
+            label13.ForeColor = Color.White;
             label13.Location = new Point(22, 54);
             label13.Name = "label13";
             label13.Size = new Size(43, 15);
@@ -244,11 +340,12 @@ namespace DailyRecordRevenueApp
             // 
             txtTypes.Location = new Point(71, 81);
             txtTypes.Name = "txtTypes";
-            txtTypes.Size = new Size(121, 23);
+            txtTypes.Size = new Size(208, 23);
             txtTypes.TabIndex = 2;
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(47, 47, 47);
             panel1.Controls.Add(buttonUpdate);
             panel1.Controls.Add(buttonRemove);
             panel1.Controls.Add(buttonAdd);
@@ -265,9 +362,9 @@ namespace DailyRecordRevenueApp
             panel1.Controls.Add(textBoxDetailRecordId);
             panel1.Controls.Add(textBoxTypeRecord);
             panel1.Controls.Add(textBoxAccount);
-            panel1.Location = new Point(915, 29);
+            panel1.Location = new Point(1363, 33);
             panel1.Name = "panel1";
-            panel1.Size = new Size(301, 425);
+            panel1.Size = new Size(292, 360);
             panel1.TabIndex = 1;
             // 
             // buttonUpdate
@@ -276,7 +373,7 @@ namespace DailyRecordRevenueApp
             buttonUpdate.FlatAppearance.BorderSize = 0;
             buttonUpdate.FlatStyle = FlatStyle.Flat;
             buttonUpdate.ForeColor = Color.FromArgb(47, 47, 47);
-            buttonUpdate.Location = new Point(160, 306);
+            buttonUpdate.Location = new Point(22, 310);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(119, 37);
             buttonUpdate.TabIndex = 16;
@@ -290,7 +387,7 @@ namespace DailyRecordRevenueApp
             buttonRemove.FlatAppearance.BorderSize = 0;
             buttonRemove.FlatStyle = FlatStyle.Flat;
             buttonRemove.ForeColor = Color.FromArgb(47, 47, 47);
-            buttonRemove.Location = new Point(22, 306);
+            buttonRemove.Location = new Point(160, 310);
             buttonRemove.Name = "buttonRemove";
             buttonRemove.Size = new Size(119, 37);
             buttonRemove.TabIndex = 15;
@@ -323,6 +420,7 @@ namespace DailyRecordRevenueApp
             // label7
             // 
             label7.AutoSize = true;
+            label7.ForeColor = Color.White;
             label7.Location = new Point(22, 83);
             label7.Name = "label7";
             label7.Size = new Size(101, 15);
@@ -339,6 +437,7 @@ namespace DailyRecordRevenueApp
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(22, 199);
             label6.Name = "label6";
             label6.Size = new Size(41, 15);
@@ -357,15 +456,18 @@ namespace DailyRecordRevenueApp
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Underline);
+            label5.ForeColor = Color.White;
             label5.Location = new Point(87, 10);
             label5.Name = "label5";
-            label5.Size = new Size(130, 15);
+            label5.Size = new Size(187, 21);
             label5.TabIndex = 8;
             label5.Text = "Record Income&Expense";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.ForeColor = Color.White;
             label4.Location = new Point(22, 141);
             label4.Name = "label4";
             label4.Size = new Size(56, 15);
@@ -375,6 +477,7 @@ namespace DailyRecordRevenueApp
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = Color.White;
             label3.Location = new Point(22, 170);
             label3.Name = "label3";
             label3.Size = new Size(37, 15);
@@ -384,6 +487,7 @@ namespace DailyRecordRevenueApp
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(22, 112);
             label2.Name = "label2";
             label2.Size = new Size(46, 15);
@@ -393,6 +497,7 @@ namespace DailyRecordRevenueApp
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(22, 54);
             label1.Name = "label1";
             label1.Size = new Size(58, 15);
@@ -424,9 +529,9 @@ namespace DailyRecordRevenueApp
             // 
             dataGridViewRecord.BackgroundColor = Color.White;
             dataGridViewRecord.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRecord.Location = new Point(12, 29);
+            dataGridViewRecord.Location = new Point(3, 54);
             dataGridViewRecord.Name = "dataGridViewRecord";
-            dataGridViewRecord.Size = new Size(897, 596);
+            dataGridViewRecord.Size = new Size(976, 578);
             dataGridViewRecord.TabIndex = 0;
             dataGridViewRecord.CellClick += dataGridViewRecord_CellClick;
             // 
@@ -434,11 +539,12 @@ namespace DailyRecordRevenueApp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1452, 705);
+            ClientSize = new Size(1659, 735);
             Controls.Add(panelMain);
             Controls.Add(panelBottom);
             Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
@@ -446,9 +552,16 @@ namespace DailyRecordRevenueApp
             Load += Main_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panelBottom.ResumeLayout(false);
             panelBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelMain.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvSummary).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
@@ -494,5 +607,12 @@ namespace DailyRecordRevenueApp
         private Label label8;
         private Label DialyCurrentDaytxt;
         private Label MonthlyCurrenttxt;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private DataGridView dgvSummary;
+        private Panel panel3;
+        private Panel panel4;
+        private Label statusLabel;
+        private Label label9;
     }
 }

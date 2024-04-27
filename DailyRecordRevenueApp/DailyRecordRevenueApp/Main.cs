@@ -57,25 +57,43 @@ namespace DailyRecordRevenueApp
 
         private async void Main_Load(object sender, EventArgs e)
         {
+            try
+            {
+                // Design configurations
+                DesigndgvMethod.Modernize(dataGridViewRecord);
+                DesigndgvMethod.ConfigureDgvSummary(dgvSummary);
 
-            DesigndgvMethod.Modernize(dataGridViewRecord);
-            _InternalService = new InternalService(new SqlAccessInternal("Data Source=APHIWAT;Initial Catalog=RevenueDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=false"));
-            var result = await _InternalService.GetRecordsAsync();
-            dataGridViewRecord.DataSource = result;
-            _detailTypes = new List<DetailTypes>();
-            _detailTypes = await _InternalService.GetAllDetailTypesAsync();
-            var detailtypeDetail = from detail in _detailTypes.Select(x => x.Detail)
-                                   select detail;
-            comboBoxDetail.DataSource = detailtypeDetail.ToList();
+                // Initialize services and set data sources
+                _InternalService = new InternalService(new SqlAccessInternal("Data Source=APHIWAT;Initial Catalog=RevenueDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=false"));
 
-            var IncomeExpense = new List<string> { "Income", "Expense" };
-            comboBoxIncomeExpense.DataSource = IncomeExpense;
-          
-            InitialSetUp();
-            await GetTaskAsync();
+                // Load records asynchronously and bind to DataGridView
+                var records = await _InternalService.GetRecordsAsync();
+                dataGridViewRecord.DataSource = records;
+
+                // Load detail types and set combo box data source
+                await LoadDetailTypes();
+
+                // Set up income/expense combo box
+                var incomeExpense = new List<string> { "Income", "Expense" };
+                comboBoxIncomeExpense.DataSource = incomeExpense;
+
+                // Initial setup for UI components
+                InitialSetUp();
+
+                await GetTaskAsync(); // Perform additional asynchronous tasks
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and provide feedback
+                MessageBox.Show($"Error during initialization: {ex.Message}");
+            }
         }
 
-
+        private async Task LoadDetailTypes()
+        {
+            _detailTypes = await _InternalService.GetAllDetailTypesAsync(); // Get all detail types
+            comboBoxDetail.DataSource = _detailTypes.Select(x => x.Detail).ToList(); // Set data source for combo box
+        }
         private void InitialSetUp()
         {
             textBoxAccount.Enabled = false;
@@ -86,58 +104,63 @@ namespace DailyRecordRevenueApp
         }
         private async void buttonAddDetail_Click(object sender, EventArgs e)
         {
-            var detailTypes = new DetailTypes
+            try
             {
-                Detail = txtdetail.Text,
-                Type = txtTypes.Text,
-                DetailId = 0
+                var detailType = new DetailTypes
+                {
+                    Detail = txtdetail.Text,
+                    Type = txtTypes.Text,
+                    DetailId = 0
+                };
 
-            };
+                await _InternalService.SaveDetailTypesAsync(detailType); // Save new detail type
 
-            await _InternalService.SaveDetailTypesAsync(detailTypes);
-
-            _detailTypes = new List<DetailTypes>();
-            _detailTypes = await _InternalService.GetAllDetailTypesAsync();
-            var detailtypeDetail = from detail in _detailTypes.Select(x => x.Detail)
-                                   select detail;
-            comboBoxDetail.DataSource = detailtypeDetail.ToList();
-            ClearDetail();
-
-
+                await LoadDetailTypes(); // Refresh detail types
+                ClearDetail(); // Clear the input fields
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding detail type: {ex.Message}");
+            }
 
         }
 
         private void comboBoxDetail_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var Id = from detail in _detailTypes
-                     where detail.Detail == comboBoxDetail.Text
-                     select detail.DetailId;
+            if (comboBoxDetail.SelectedItem == null) return;
 
+            var selectedDetail = _detailTypes.FirstOrDefault(detail => detail.Detail == comboBoxDetail.Text);
 
-            var TypeDetail = from detail in _detailTypes
-                             where detail.Detail == comboBoxDetail.Text
-                             select detail.Type;
-
-
-            var resultId = Id.ToList();
-            textBoxDetailRecordId.Text = resultId[0].ToString();
-            textBoxTypeRecord.Text = TypeDetail.ToList()[0];
+            if (selectedDetail != null)
+            {
+                textBoxDetailRecordId.Text = selectedDetail.DetailId.ToString();
+                textBoxTypeRecord.Text = selectedDetail.Type;
+            }
 
         }
 
         private async void buttonAdd_Click(object sender, EventArgs e)
         {
-            var record = new ExpenseIncomeRecordAdd
+            try
             {
-                DetailId = int.Parse(textBoxDetailRecordId.Text),
-                IsIncomeOrExpense = comboBoxIncomeExpense.Text,
-                Value = decimal.Parse(textBoxValue.Text)
-            };
-            await _InternalService.SaveRecordAsync(record);
+                var record = new ExpenseIncomeRecordAdd
+                {
+                    DetailId = int.Parse(textBoxDetailRecordId.Text),
+                    IsIncomeOrExpense = comboBoxIncomeExpense.Text,
+                    Value = decimal.Parse(textBoxValue.Text)
+                };
 
-            var result = await _InternalService.GetRecordsAsync();
-            dataGridViewRecord.DataSource = result;
-            ClearDetail();
+                await _InternalService.SaveRecordAsync(record); // Save the new record
+
+                var updatedRecords = await _InternalService.GetRecordsAsync(); // Get updated records
+                dataGridViewRecord.DataSource = updatedRecords; // Update DataGridView
+                ClearDetail(); // Clear the fields
+                await GetTaskAsync(); // Perform additional async tasks
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding record: {ex.Message}");
+            }
         }
 
         private void Panel_MouseDown(object sender, MouseEventArgs e)
@@ -170,7 +193,7 @@ namespace DailyRecordRevenueApp
                 textBoxAccount.Text = row.Cells[1].Value.ToString();
                 textBoxDetailRecordId.Text = row.Cells[4].Value.ToString();
                 textBoxValue.Text = row.Cells[6].Value.ToString();
-                LoadVariabe();
+                LoadVariables();
             }
             else
             {
@@ -178,14 +201,16 @@ namespace DailyRecordRevenueApp
             }
         }
 
-        private void LoadVariabe()
+        private void LoadVariables()
         {
-            _expenseIncomeRecordAdd = new ExpenseIncomeRecordAdd
             {
-                DetailId = int.Parse(textBoxDetailRecordId.Text),
-                IsIncomeOrExpense = comboBoxIncomeExpense.Text,
-                Value = decimal.Parse(textBoxValue.Text),
-            };
+                _expenseIncomeRecordAdd = new ExpenseIncomeRecordAdd
+                {
+                    DetailId = int.Parse(textBoxDetailRecordId.Text),
+                    IsIncomeOrExpense = comboBoxIncomeExpense.Text,
+                    Value = decimal.Parse(textBoxValue.Text),
+                };
+            }
         }
 
         private void ClearDetail()
@@ -199,24 +224,33 @@ namespace DailyRecordRevenueApp
 
         private async void buttonUpdate_Click(object sender, EventArgs e)
         {
-            LoadVariabe();
+            LoadVariables();
+
             await _InternalService.UpdateRecordAsync(_Id, _expenseIncomeRecordAdd);
 
-            var result = await _InternalService.GetRecordsAsync();
-            dataGridViewRecord.DataSource = result;
-            ClearDetail();
+            var result = await _InternalService.GetRecordsAsync(); // Get the latest records
+            dataGridViewRecord.DataSource = result; // Update DataGridView
+            ClearDetail(); // Clear UI components
+            await GetTaskAsync(); // Execute additional async tasks
         }
 
         private async void buttonRemove_Click(object sender, EventArgs e)
         {
-            if(_Id != 0)
+            if (_Id != 0) // Ensure valid ID
             {
                 await _InternalService.DeleteRecordAsync(_Id);
-                var result = await _InternalService.GetRecordsAsync();
-                dataGridViewRecord.DataSource = result;
-                ClearDetail();
+
+                var result = await _InternalService.GetRecordsAsync(); // Get updated records
+                dataGridViewRecord.DataSource = result; // Update DataGridView
+                ClearDetail(); // Clear UI components
+                await GetTaskAsync(); // Execute additional async tasks
             }
-          
+            else
+            {
+                // Handle invalid ID scenario
+                MessageBox.Show("Invalid record ID. Cannot remove.");
+            }
+
         }
 
         private async Task GetTaskAsync()
@@ -224,6 +258,7 @@ namespace DailyRecordRevenueApp
             try
             {
                 // Using null-coalescing assignment to ensure initialization of strings
+                await GetSummaryAsync();
                 string currentDay = string.Empty;
                 string currentExpense = string.Empty;
                 string year = string.Empty;
@@ -238,9 +273,9 @@ namespace DailyRecordRevenueApp
                 if (currentDayExpense != null)
                 {
                     currentDay = currentDayExpense.ExpenseDate.ToShortDateString();
-                    currentExpense = currentDayExpense.TotalExpense.ToString(); 
+                    currentExpense = currentDayExpense.TotalExpense.ToString();
 
-                   
+
                     if (monthTotalExpense != null)
                     {
                         year = monthTotalExpense.ExpenseYear.ToString();
@@ -249,7 +284,7 @@ namespace DailyRecordRevenueApp
                     }
                 }
 
-                if(decimal.Parse(currentExpense) >= 300)
+                if (decimal.Parse(currentExpense) >= 300)
                 {
                     DialyCurrentDaytxt.ForeColor = Color.Red;
                     DialyCurrentDaytxt.Text = $"Current Day: {currentDay} | Dialy Expense: {currentExpense} Baht (Max = 300 Baht/Day)";
@@ -259,27 +294,61 @@ namespace DailyRecordRevenueApp
                     DialyCurrentDaytxt.ForeColor = Color.LightGreen;
                     DialyCurrentDaytxt.Text = $"Current Day: {currentDay} | Dialy Expense: {currentExpense} Baht (Max = 300 Baht/Day)";
                 }
-            
+
 
                 if (!string.IsNullOrEmpty(currentMonthExpense))
                 {
-                    if(decimal.Parse(currentMonthExpense) >= 9000)
+                    if (decimal.Parse(currentMonthExpense) >= 9000)
                     {
                         MonthlyCurrenttxt.ForeColor = Color.Red;
-                        MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 9000 Baht/Month)" ;
+                        MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 9000 Baht/Month)";
                     }
                     else
                     {
                         MonthlyCurrenttxt.ForeColor = Color.LightGreen;
                         MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 9000 Baht/Month)";
                     }
-            
+
                 }
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show("An error occurred while retrieving expense data. Please try again.");
+            }
+        }
+
+
+        private async Task GetSummaryAsync()
+        {
+            try
+            {
+                // Fetch data asynchronously
+                var result = await _InternalService.DailyExpenseSummariesAsync(300);
+
+                if (result == null || !result.Any())
+                {
+                    // If no data, clear data source and set status
+                    dgvSummary.DataSource = null;
+                    statusLabel.Text = "No data available.";
+                    return;
+                }
+
+                // Convert to lists to avoid deferred execution
+                var withinLimit = result.Where(c => c.ExpenseStatus == "Within Limit").ToList();
+                var outOfLimit = result.Where(c => c.ExpenseStatus == "Out of Limit").ToList();
+
+                // Bind data to DataGridView
+                dgvSummary.DataSource = result;
+
+                // Set status label with counts
+                statusLabel.Text = $"Within Limit: {withinLimit.Count} Times | Out of Limit: {outOfLimit.Count} Times";
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                statusLabel.Text = $"Error fetching summary: {ex.Message}";
+                // Optionally, log the error for further analysis
             }
         }
 
