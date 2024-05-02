@@ -1,0 +1,33 @@
+﻿@page
+@model RevenueWebApp.Pages.RevenueSummariesModel
+@{
+    ViewData["Title"] = "Summary";
+}
+
+<div class="container mt-5">
+    <div ></div>
+    <h1 class="mb-3">Daily Expense Summaries</h1>
+    <div class="row">
+        @foreach (var record in Model.dailyExpenseSummaries)
+        {
+            var statusClass = record.ExpenseStatus switch
+            {
+                "Within Limit" => "text-success",
+                "Out of Limit" => "text-warning",
+                _ => "text-secondary" // Default class if status is neither Approved nor Pending
+            };
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Date: @record.ExpenseDate.ToString("MM/dd/yyyy")
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Total Expense: @record.TotalExpense.ToString() Baht</p>
+                        <p class="card-text @statusClass">Status: @record.ExpenseStatus</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

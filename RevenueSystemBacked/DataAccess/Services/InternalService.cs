@@ -68,7 +68,7 @@ namespace DataAccess.Services
 
         public async Task<CurrentMonthExpense?> CurrentMonthExpenseAsync()
         {
-            var result = await _sqlAccessInternal.LoadDataAsync<CurrentMonthExpense, dynamic>(storedProcedure: "dbo.spCurrentDayExpense", new { });
+            var result = await _sqlAccessInternal.LoadDataAsync<CurrentMonthExpense, dynamic>(storedProcedure: "dbo.spCurrentMonthExpense", new { });
             return result.FirstOrDefault();
         }
 

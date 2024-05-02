@@ -298,15 +298,15 @@ namespace DailyRecordRevenueApp
 
                 if (!string.IsNullOrEmpty(currentMonthExpense))
                 {
-                    if (decimal.Parse(currentMonthExpense) >= 9000)
+                    if (decimal.Parse(currentMonthExpense) >= 9000+8000)
                     {
                         MonthlyCurrenttxt.ForeColor = Color.Red;
-                        MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 9000 Baht/Month)";
+                        MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 17000 Baht/Month)";
                     }
                     else
                     {
                         MonthlyCurrenttxt.ForeColor = Color.LightGreen;
-                        MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 9000 Baht/Month)";
+                        MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 17000 Baht/Month)";
                     }
 
                 }

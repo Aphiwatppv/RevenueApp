@@ -1,0 +1,6 @@
+@RevenueAPI_HostAddress = http://localhost:5047
+
+GET {{RevenueAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
