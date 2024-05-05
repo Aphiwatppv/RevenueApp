@@ -47,6 +47,8 @@ namespace DailyRecordRevenueApp
             panel3 = new Panel();
             dgvSummary = new DataGridView();
             panel2 = new Panel();
+            dgvdetail = new DataGridView();
+            btnRemoveDetail = new Button();
             buttonAddDetail = new Button();
             txtdetail = new TextBox();
             label10 = new Label();
@@ -80,6 +82,7 @@ namespace DailyRecordRevenueApp
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSummary).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvdetail).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecord).BeginInit();
             SuspendLayout();
@@ -237,7 +240,7 @@ namespace DailyRecordRevenueApp
             panel4.Controls.Add(statusLabel);
             panel4.Location = new Point(999, 6);
             panel4.Name = "panel4";
-            panel4.Size = new Size(343, 41);
+            panel4.Size = new Size(358, 41);
             panel4.TabIndex = 5;
             // 
             // statusLabel
@@ -258,7 +261,7 @@ namespace DailyRecordRevenueApp
             panel3.Controls.Add(MonthlyCurrenttxt);
             panel3.Location = new Point(5, 7);
             panel3.Name = "panel3";
-            panel3.Size = new Size(974, 41);
+            panel3.Size = new Size(988, 41);
             panel3.TabIndex = 4;
             // 
             // dgvSummary
@@ -266,12 +269,14 @@ namespace DailyRecordRevenueApp
             dgvSummary.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSummary.Location = new Point(999, 54);
             dgvSummary.Name = "dgvSummary";
-            dgvSummary.Size = new Size(343, 578);
+            dgvSummary.Size = new Size(358, 578);
             dgvSummary.TabIndex = 3;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(47, 47, 47);
+            panel2.Controls.Add(dgvdetail);
+            panel2.Controls.Add(btnRemoveDetail);
             panel2.Controls.Add(buttonAddDetail);
             panel2.Controls.Add(txtdetail);
             panel2.Controls.Add(label10);
@@ -279,10 +284,33 @@ namespace DailyRecordRevenueApp
             panel2.Controls.Add(label13);
             panel2.Controls.Add(txtTypes);
             panel2.ForeColor = Color.White;
-            panel2.Location = new Point(1363, 445);
+            panel2.Location = new Point(1364, 369);
             panel2.Name = "panel2";
-            panel2.Size = new Size(292, 185);
+            panel2.Size = new Size(292, 263);
             panel2.TabIndex = 2;
+            // 
+            // dgvdetail
+            // 
+            dgvdetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvdetail.Location = new Point(12, 28);
+            dgvdetail.Name = "dgvdetail";
+            dgvdetail.Size = new Size(271, 144);
+            dgvdetail.TabIndex = 17;
+            dgvdetail.CellClick += dgvdetail_CellClick;
+            // 
+            // btnRemoveDetail
+            // 
+            btnRemoveDetail.BackColor = Color.FromArgb(255, 128, 128);
+            btnRemoveDetail.FlatAppearance.BorderSize = 0;
+            btnRemoveDetail.FlatStyle = FlatStyle.Flat;
+            btnRemoveDetail.ForeColor = Color.FromArgb(47, 47, 47);
+            btnRemoveDetail.Location = new Point(178, 236);
+            btnRemoveDetail.Name = "btnRemoveDetail";
+            btnRemoveDetail.Size = new Size(105, 23);
+            btnRemoveDetail.TabIndex = 16;
+            btnRemoveDetail.Text = "Remove";
+            btnRemoveDetail.UseVisualStyleBackColor = false;
+            btnRemoveDetail.Click += btnRemoveDetail_Click;
             // 
             // buttonAddDetail
             // 
@@ -290,9 +318,9 @@ namespace DailyRecordRevenueApp
             buttonAddDetail.FlatAppearance.BorderSize = 0;
             buttonAddDetail.FlatStyle = FlatStyle.Flat;
             buttonAddDetail.ForeColor = Color.FromArgb(47, 47, 47);
-            buttonAddDetail.Location = new Point(71, 125);
+            buttonAddDetail.Location = new Point(178, 178);
             buttonAddDetail.Name = "buttonAddDetail";
-            buttonAddDetail.Size = new Size(208, 37);
+            buttonAddDetail.Size = new Size(105, 52);
             buttonAddDetail.TabIndex = 15;
             buttonAddDetail.Text = "Add";
             buttonAddDetail.UseVisualStyleBackColor = false;
@@ -300,9 +328,9 @@ namespace DailyRecordRevenueApp
             // 
             // txtdetail
             // 
-            txtdetail.Location = new Point(71, 46);
+            txtdetail.Location = new Point(69, 178);
             txtdetail.Name = "txtdetail";
-            txtdetail.Size = new Size(208, 23);
+            txtdetail.Size = new Size(105, 23);
             txtdetail.TabIndex = 9;
             // 
             // label10
@@ -310,7 +338,7 @@ namespace DailyRecordRevenueApp
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Underline);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(71, 10);
+            label10.Location = new Point(105, 0);
             label10.Name = "label10";
             label10.Size = new Size(115, 21);
             label10.TabIndex = 8;
@@ -320,7 +348,7 @@ namespace DailyRecordRevenueApp
             // 
             label12.AutoSize = true;
             label12.ForeColor = Color.White;
-            label12.Location = new Point(28, 91);
+            label12.Location = new Point(30, 215);
             label12.Name = "label12";
             label12.Size = new Size(37, 15);
             label12.TabIndex = 6;
@@ -330,7 +358,7 @@ namespace DailyRecordRevenueApp
             // 
             label13.AutoSize = true;
             label13.ForeColor = Color.White;
-            label13.Location = new Point(22, 54);
+            label13.Location = new Point(24, 186);
             label13.Name = "label13";
             label13.Size = new Size(43, 15);
             label13.TabIndex = 5;
@@ -338,9 +366,9 @@ namespace DailyRecordRevenueApp
             // 
             // txtTypes
             // 
-            txtTypes.Location = new Point(71, 81);
+            txtTypes.Location = new Point(69, 207);
             txtTypes.Name = "txtTypes";
-            txtTypes.Size = new Size(208, 23);
+            txtTypes.Size = new Size(105, 23);
             txtTypes.TabIndex = 2;
             // 
             // panel1
@@ -362,7 +390,7 @@ namespace DailyRecordRevenueApp
             panel1.Controls.Add(textBoxDetailRecordId);
             panel1.Controls.Add(textBoxTypeRecord);
             panel1.Controls.Add(textBoxAccount);
-            panel1.Location = new Point(1363, 33);
+            panel1.Location = new Point(1363, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(292, 360);
             panel1.TabIndex = 1;
@@ -531,7 +559,7 @@ namespace DailyRecordRevenueApp
             dataGridViewRecord.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRecord.Location = new Point(3, 54);
             dataGridViewRecord.Name = "dataGridViewRecord";
-            dataGridViewRecord.Size = new Size(976, 578);
+            dataGridViewRecord.Size = new Size(990, 578);
             dataGridViewRecord.TabIndex = 0;
             dataGridViewRecord.CellClick += dataGridViewRecord_CellClick;
             // 
@@ -564,6 +592,7 @@ namespace DailyRecordRevenueApp
             ((System.ComponentModel.ISupportInitialize)dgvSummary).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvdetail).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecord).EndInit();
@@ -614,5 +643,7 @@ namespace DailyRecordRevenueApp
         private Panel panel4;
         private Label statusLabel;
         private Label label9;
+        private DataGridView dgvdetail;
+        private Button btnRemoveDetail;
     }
 }

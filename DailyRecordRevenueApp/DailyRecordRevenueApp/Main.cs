@@ -12,10 +12,12 @@ namespace DailyRecordRevenueApp
         IEnumerable<DetailTypes> _detailTypes;
 
         int _Id = 0;
+        int _IdDetail = 0;
 
         private Timer timer;
 
         ExpenseIncomeRecordAdd _expenseIncomeRecordAdd;
+        DetailTypes _deiatilModel;
         // Drag panel
         private bool dragging = false;
         private Point dragCursorPoint;
@@ -62,6 +64,7 @@ namespace DailyRecordRevenueApp
                 // Design configurations
                 DesigndgvMethod.Modernize(dataGridViewRecord);
                 DesigndgvMethod.ConfigureDgvSummary(dgvSummary);
+                DesigndgvMethod.ApplyModernTone(dgvdetail);
 
                 // Initialize services and set data sources
                 _InternalService = new InternalService(new SqlAccessInternal("Data Source=APHIWAT;Initial Catalog=RevenueDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=false"));
@@ -93,6 +96,8 @@ namespace DailyRecordRevenueApp
         {
             _detailTypes = await _InternalService.GetAllDetailTypesAsync(); // Get all detail types
             comboBoxDetail.DataSource = _detailTypes.Select(x => x.Detail).ToList(); // Set data source for combo box
+            dgvdetail.DataSource = _detailTypes;
+
         }
         private void InitialSetUp()
         {
@@ -106,17 +111,25 @@ namespace DailyRecordRevenueApp
         {
             try
             {
-                var detailType = new DetailTypes
+                if (txtdetail.Text != string.Empty)
                 {
-                    Detail = txtdetail.Text,
-                    Type = txtTypes.Text,
-                    DetailId = 0
-                };
+                    var detailType = new DetailTypes
+                    {
+                        Detail = txtdetail.Text,
+                        Type = txtTypes.Text,
+                        DetailId = 0
+                    };
 
-                await _InternalService.SaveDetailTypesAsync(detailType); // Save new detail type
+                    await _InternalService.SaveDetailTypesAsync(detailType); // Save new detail type
 
-                await LoadDetailTypes(); // Refresh detail types
-                ClearDetail(); // Clear the input fields
+                    await LoadDetailTypes(); // Refresh detail types
+                    ClearDetail(); // Clear the input fields
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Detail");
+                }
+
             }
             catch (Exception ex)
             {
@@ -298,7 +311,7 @@ namespace DailyRecordRevenueApp
 
                 if (!string.IsNullOrEmpty(currentMonthExpense))
                 {
-                    if (decimal.Parse(currentMonthExpense) >= 9000+8000)
+                    if (decimal.Parse(currentMonthExpense) >= 9000 + 8000)
                     {
                         MonthlyCurrenttxt.ForeColor = Color.Red;
                         MonthlyCurrenttxt.Text = $" | Monthly Expense: {currentMonthExpense} Baht (Max = 17000 Baht/Month)";
@@ -352,5 +365,37 @@ namespace DailyRecordRevenueApp
             }
         }
 
+        private async void btnRemoveDetail_Click(object sender, EventArgs e)
+        {
+            await _InternalService.DeleteDetailTypesAsync(_deiatilModel);
+            await LoadDetailTypes();
+        }
+
+        private void dgvdetail_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvdetail.Rows[e.RowIndex];
+                _IdDetail = int.Parse(row.Cells[0].Value.ToString());
+                txtdetail.Text = row.Cells[1].Value.ToString();
+                txtTypes.Text = row.Cells[2].Value.ToString();
+                LoadDeatilModel();
+
+            }
+            else
+            {
+                ClearDetail();
+            }
+        }
+
+        private  void LoadDeatilModel()
+        {
+            _deiatilModel = new DetailTypes
+            {
+                DetailId = _IdDetail,
+                Type = txtTypes.Text,
+                Detail = txtdetail.Text
+            };
+        }
     }
 }
