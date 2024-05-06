@@ -1,4 +1,5 @@
-﻿using AuthAccess.Model;
+﻿using AuthAccess.AuthService;
+using AuthAccess.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -11,8 +12,8 @@ namespace RevenueAPI
         {
             app.MapGet(pattern: "/GetAllRecordAsync", GetAllRecordAsync);
             app.MapGet(pattern: "/GetDailyExpenseSummariesAsync/{limit}", GetDailyExpenseSummariesAsync);
-            app.MapPost(pattern: "/Register", Register);
-            app.MapPost(pattern: "/Login", Login);
+            app.MapPost(pattern: "/Register", RegisterAsync);
+            app.MapPost(pattern: "/Login", LoginAsync);
 
 
         }
@@ -43,11 +44,11 @@ namespace RevenueAPI
             }
         }
 
-        public static async Task<IResult> Register([FromServices] IAuthServices Authservices, [FromBody] AuthAccess.Model.RegisteringUserInput registeringUserInput , string password)
+        public static async Task<IResult> RegisterAsync(IAuthServices authService, RegisteringModel registeringModel)
         {
             try
             {
-                return Results.Ok(await Authservices.RegisterUserAsync(registeringUserInput, password));
+                return Results.Ok(await authService.RegisterMethod(registeringModel));
             }
             catch (Exception ex)
             {
@@ -55,11 +56,11 @@ namespace RevenueAPI
             }
         }
 
-        public static async Task<IResult> Login([FromServices] IAuthServices Authservices , [FromBody] AuthAccess.Model.UserInput NewuserInput)
+        public static async Task<IResult> LoginAsync(IAuthServices authService, UserInput userInput)
         {
             try
             {
-                return Results.Ok(await Authservices.LoginMethodAsync(NewuserInput));
+                return Results.Ok(await authService.LoginMethodAsync(userInput));
             }
             catch (Exception ex)
             {

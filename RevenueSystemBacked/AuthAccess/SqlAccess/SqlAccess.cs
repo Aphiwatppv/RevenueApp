@@ -70,7 +70,7 @@ namespace AuthAccess.SqlAccess
             }
         }
 
-        public async Task<int> UpdateAsyncWithReturning<U>(string storedProcedure, U parameters)
+        public async Task<string> UpdateAsyncWithReturning<U>(string storedProcedure, U parameters)
         {
             var connectionString = _iconfig.GetConnectionString("Register");
             using (IDbConnection connection = new SqlConnection(connectionString))
@@ -80,7 +80,7 @@ namespace AuthAccess.SqlAccess
 
                 await connection.ExecuteAsync(storedProcedure, dynamicParameters, commandType: CommandType.StoredProcedure);
 
-                return dynamicParameters.Get<int>("Result");
+                return dynamicParameters.Get<string>("Result");
             }
         }
 

@@ -37,9 +37,10 @@ namespace AuthAccess.AuthService
         public async Task<ReturnLoginModel> LoginMethodAsync(UserInput userInput)
         {
             var hashSalt = await GetHashSaltAsync(userInput);
-
+            var Isvalid = IsValidPassword(userInput.Password, hashSalt.Salt, hashSalt.HashPassword);
             if (!string.IsNullOrWhiteSpace(hashSalt?.Salt) && !string.IsNullOrWhiteSpace(hashSalt?.HashPassword))
             {
+               
                 if (IsValidPassword(userInput.Password, hashSalt.Salt, hashSalt.HashPassword))
                 {
                     var result = await _sqlAccess.GetOneRecordAsync<ReturnLoginModel, dynamic>("dbo.spLogin", new
@@ -48,42 +49,41 @@ namespace AuthAccess.AuthService
                         HashPassword = hashSalt.HashPassword
                     });
 
-                    return result ?? new ReturnLoginModel();
+                    return result ?? new ReturnLoginModel
+                    {
+                        Email = "Invalid Pass"
+                    };
                 }
             }
+            else
+            {
+                // Handle the case where either the salt or hash password is null or white space
+                return new ReturnLoginModel { Email = "Invalid Salt or Hash Password" };
+            }
 
-            return new ReturnLoginModel();
+            return new ReturnLoginModel { Email = $" Salt : {hashSalt?.Salt}  Hash : {hashSalt?.HashPassword} {Isvalid}" };
         }
 
-        public async Task<StatusCodeRegistering> RegisterUserAsync(RegisteringUserInput newUser, string password)
+
+        public async Task<string> RegisterMethod(RegisteringModel model)
         {
-            var hashpass = EncryptPassword.HashPassword(password);
+            var hashPass = EncryptPassword.HashPassword(model.Password);
 
-            var model = new RegisteringModel
+            var parameters = new
             {
-               
-                FirstName = newUser.FirstName,
-                LastName = newUser.LastName,
-                Email = newUser.Email,
-                IdentityID = newUser.IdentityID,
-                Salt = hashpass.Salt,
-                HashPassword = hashpass.HashPassword
-
+                model.FirstName,
+                model.LastName,
+                model.Email,
+                model.IdentityID,
+                hashPass.HashPassword,
+                hashPass.Salt,
             };
 
-            var result = await _sqlAccess.UpdateAsyncSignleRecord<StatusCodeRegistering, dynamic>(storedProcedures: "dbo.spRegisterUser", new
-            {
 
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                IdentityID = model.IdentityID,
-                HashPassword = model.HashPassword,
-                Salt = model.Salt
+            string result = await _sqlAccess.UpdateAsyncWithReturning<dynamic>(
+                storedProcedure: "dbo.spRegisterUser", parameters: parameters);
 
-
-
-            });
+            ResultModel.ResultInformation = result;
 
             return result;
         }

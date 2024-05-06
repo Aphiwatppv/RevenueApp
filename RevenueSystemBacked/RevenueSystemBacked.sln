@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessOldFrameWork4_6",
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UserLevelDB", "UserLevelDB\UserLevelDB.sqlproj", "{5D8C3F24-13B1-478B-B3A6-E2DB1287F1F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthAccess", "AuthAccess\AuthAccess.csproj", "{E22BCCB5-D938-44F2-9010-26EC8BF0802B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAccess", "AuthAccess\AuthAccess.csproj", "{E22BCCB5-D938-44F2-9010-26EC8BF0802B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
