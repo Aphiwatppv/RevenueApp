@@ -12,11 +12,11 @@ using System.Data;
 using static Dapper.SqlMapper;
 namespace AuthAccess.AuthService
 {
-   public class AuthServices
+    public class AuthServices : IAuthServices
     {
         private readonly ISqlAccess _sqlAccess;
-        
-        public AuthServices (ISqlAccess sqlAccess)
+
+        public AuthServices(ISqlAccess sqlAccess)
         {
             _sqlAccess = sqlAccess;
         }
@@ -28,9 +28,9 @@ namespace AuthAccess.AuthService
                     Email = userInput.Email
                 });
 
-            return result ?? new ReturnHashSalt(); 
+            return result ?? new ReturnHashSalt();
         }
-        private bool IsValidPassword(string password , string salt , string hash )
+        private bool IsValidPassword(string password, string salt, string hash)
         {
             return EncryptPassword.VerifyPassword(password, salt, hash);
         }
@@ -38,7 +38,7 @@ namespace AuthAccess.AuthService
         {
             var hashSalt = await GetHashSaltAsync(userInput);
 
-            if (!string.IsNullOrWhiteSpace(hashSalt?.Salt) && !string.IsNullOrWhiteSpace(hashSalt?.HashPassword)) 
+            if (!string.IsNullOrWhiteSpace(hashSalt?.Salt) && !string.IsNullOrWhiteSpace(hashSalt?.HashPassword))
             {
                 if (IsValidPassword(userInput.Password, hashSalt.Salt, hashSalt.HashPassword))
                 {
@@ -48,11 +48,11 @@ namespace AuthAccess.AuthService
                         HashPassword = hashSalt.HashPassword
                     });
 
-                    return result ?? new ReturnLoginModel(); 
+                    return result ?? new ReturnLoginModel();
                 }
             }
 
-            return new ReturnLoginModel(); 
+            return new ReturnLoginModel();
         }
 
         public async Task<StatusCodeRegistering> RegisterUserAsync(RegisteringUserInput newUser, string password)
@@ -61,19 +61,20 @@ namespace AuthAccess.AuthService
 
             var model = new RegisteringModel
             {
-                Email = newUser.Email,
+               
                 FirstName = newUser.FirstName,
-                LastName = newUser.LastName,    
-                 IdentityID = newUser.IdentityID,
-                 Salt = hashpass.Salt,
-                 HashPassword = hashpass.HashPassword   
+                LastName = newUser.LastName,
+                Email = newUser.Email,
+                IdentityID = newUser.IdentityID,
+                Salt = hashpass.Salt,
+                HashPassword = hashpass.HashPassword
 
             };
 
             var result = await _sqlAccess.UpdateAsyncSignleRecord<StatusCodeRegistering, dynamic>(storedProcedures: "dbo.spRegisterUser", new
             {
 
-                FistName = model.FirstName,
+                FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
                 IdentityID = model.IdentityID,
@@ -82,7 +83,7 @@ namespace AuthAccess.AuthService
 
 
 
-            }) ;
+            });
 
             return result;
         }

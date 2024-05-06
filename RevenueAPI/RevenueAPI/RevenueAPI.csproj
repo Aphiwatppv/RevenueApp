@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AuthAccess">
+      <HintPath>..\..\RevenueSystemBacked\AuthAccess\bin\Debug\net8.0\AuthAccess.dll</HintPath>
+    </Reference>
     <Reference Include="DataAccess">
       <HintPath>..\..\RevenueSystemBacked\DataAccess\bin\Debug\net8.0\DataAccess.dll</HintPath>
     </Reference>

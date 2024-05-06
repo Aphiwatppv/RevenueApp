@@ -1,3 +1,4 @@
+using AuthAccess.AuthService;
 using RevenueAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,8 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
+builder.Services.AddSingleton<DataAccess.SqlAccess.ISqlAccess, DataAccess.SqlAccess.SqlAccess>();
 builder.Services.AddSingleton<IServices, Services>();
+
+builder.Services.AddSingleton<AuthAccess.SqlAccess.ISqlAccess, AuthAccess.SqlAccess.SqlAccess>();
+builder.Services.AddSingleton<IAuthServices, AuthServices>();
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RevenueWebApp.Pages
 {
-    public class NavigateSummaryModel : PageModel
+    public class LoginModel : PageModel
     {
         public void OnGet()
         {

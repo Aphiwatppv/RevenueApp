@@ -1,0 +1,68 @@
+﻿@page
+@model RevenueWebApp.Pages.LoginModel
+@{
+    ViewData["Title"] = "Log In And Register";
+}
+
+<body>
+    <div class="container">
+        <h2 class="mt-5">Account Access</h2>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#login" data-bs-toggle="tab">Log In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#register" data-bs-toggle="tab">Register</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="login">
+                <form class="p-4">
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </form>
+            </div>
+            <div class="tab-pane" id="register">
+                <form class="p-4">
+                    <div class="mb-3">
+                        <label for="registerFirstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="registerFirstName" placeholder="Enter First Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerLastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="registerLastName" placeholder="Enter Last Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerIdentityID" class="form-label">Identity Id</label>
+                        <input type="text" class="form-control" id="registerIdentityId" placeholder="Enter Identity Id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>

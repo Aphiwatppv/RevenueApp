@@ -68,4 +68,7 @@
     <Build Include="dbo\StoredProcedures\spLogin.sql" />
     <Build Include="dbo\StoredProcedures\spRegisterUser.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="UserLevelDB.publish.xml" />
+  </ItemGroup>
 </Project>

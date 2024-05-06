@@ -34,7 +34,7 @@ namespace AuthAccess.SqlAccess
         public async Task<IEnumerable<T>> GetDataAsync<T, U>(string storedProcedure, U parameters)
         {
             // Obtain the connection string from the configuration; throws if not found
-            string? connectionString = _iconfig.GetConnectionString("Default");
+            string? connectionString = _iconfig.GetConnectionString("Register");
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 // Execute the stored procedure asynchronously and return the results
@@ -52,7 +52,7 @@ namespace AuthAccess.SqlAccess
         public async Task UpdateAsync<T>(string storedProcedure, T parameters)
         {
             // Obtain the connection string from the configuration; throws if not found
-            string? connectionString = _iconfig.GetConnectionString("Default");
+            string? connectionString = _iconfig.GetConnectionString("Register");
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 // Execute the stored procedure asynchronously without expecting any return value
@@ -63,7 +63,7 @@ namespace AuthAccess.SqlAccess
 
         public async Task<T?> GetOneRecordAsync<T, U>(string storedprocedures, U parameters)
         {
-            string? connectionstring = _iconfig.GetConnectionString("Default");
+            string? connectionstring = _iconfig.GetConnectionString("Register");
             using (IDbConnection connection = new SqlConnection(connectionstring))
             {
                 return await connection.QueryFirstOrDefaultAsync<T>(storedprocedures, parameters, commandType: CommandType.StoredProcedure);
@@ -72,7 +72,7 @@ namespace AuthAccess.SqlAccess
 
         public async Task<int> UpdateAsyncWithReturning<U>(string storedProcedure, U parameters)
         {
-            var connectionString = _iconfig.GetConnectionString("Default");
+            var connectionString = _iconfig.GetConnectionString("Register");
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 var dynamicParameters = new DynamicParameters(parameters);
@@ -86,7 +86,7 @@ namespace AuthAccess.SqlAccess
 
         public async Task<T> UpdateAsyncSignleRecord<T, U>(string storedProcedures, U parameters)
         {
-            var connectionstring = _iconfig.GetConnectionString("Default");
+            var connectionstring = _iconfig.GetConnectionString("Register");
 
             using (IDbConnection connection = new SqlConnection(connectionstring))
             {
