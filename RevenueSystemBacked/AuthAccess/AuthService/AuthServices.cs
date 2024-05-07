@@ -38,10 +38,10 @@ namespace AuthAccess.AuthService
         {
             var hashSalt = await GetHashSaltAsync(userInput);
             var Isvalid = IsValidPassword(userInput.Password, hashSalt.Salt, hashSalt.HashPassword);
-            if (!string.IsNullOrWhiteSpace(hashSalt?.Salt) && !string.IsNullOrWhiteSpace(hashSalt?.HashPassword))
+            if (!string.IsNullOrWhiteSpace(hashSalt.Salt) && !string.IsNullOrWhiteSpace(hashSalt.HashPassword))
             {
                
-                if (IsValidPassword(userInput.Password, hashSalt.Salt, hashSalt.HashPassword))
+                if (!IsValidPassword(userInput.Password, hashSalt.Salt, hashSalt.HashPassword))
                 {
                     var result = await _sqlAccess.GetOneRecordAsync<ReturnLoginModel, dynamic>("dbo.spLogin", new
                     {
