@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AuthenticationAccess">
+      <HintPath>..\..\UserENDb\AuthenticationAccess\bin\Debug\net8.0\AuthenticationAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Logger">
+      <HintPath>..\..\UserENDb\Logger\bin\Debug\net8.0\Logger.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

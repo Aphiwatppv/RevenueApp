@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spGetEmployeeDetail]
-    @EN NVARCHAR(50)
+    @EN NVARCHAR(100)
 
 AS
 BEGIN

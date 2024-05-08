@@ -65,6 +65,7 @@
     <Build Include="dbo\StoredProcedure\spRegisterEmployee.sql" />
     <Build Include="dbo\StoredProcedure\spGetSaltHash.sql" />
     <Build Include="dbo\StoredProcedure\spGetEmployeeDetail.sql" />
+    <Build Include="dbo\StoredProcedure\spGetAllEmployeeDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="UserENDb.publish.xml" />

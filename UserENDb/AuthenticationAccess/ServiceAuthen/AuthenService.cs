@@ -1,6 +1,7 @@
 ﻿using AuthenticationAccess.EncryptSecurity;
 using AuthenticationAccess.Model;
 using AuthenticationAccess.SqlAccess;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 
 namespace AuthenticationAccess.ServiceAuthen
@@ -56,7 +57,7 @@ namespace AuthenticationAccess.ServiceAuthen
 
             if (!string.IsNullOrEmpty(getsalthash?.Salt) && !string.IsNullOrEmpty(getsalthash.HashPassword))
             {
-                if (IsValidPassword(employeeInput.EN, getsalthash.Salt, getsalthash.HashPassword))
+                if (IsValidPassword(employeeInput.Password, getsalthash.Salt, getsalthash.HashPassword))
                 {
                     var result = await _sqlAccess.QuerySingleRecordAsync<EmployeeDetail, dynamic>(storedProcedure: "dbo.spGetEmployeeDetail", new
                     {
@@ -76,6 +77,13 @@ namespace AuthenticationAccess.ServiceAuthen
             };
 
 
+        }
+
+        public async Task<IEnumerable<EmployeeDetail>> GetAllUser()
+        {
+            var result = await _sqlAccess.QueryDataAsync<EmployeeDetail, dynamic>(storedProcedure: "dbo.spGetAllEmployeeDetail", new { });
+
+            return result;
         }
 
 

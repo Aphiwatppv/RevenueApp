@@ -1,0 +1,58 @@
+﻿@page
+@model LoginRegisterModel
+@{
+    ViewData["Title"] = "Login and Register";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <!-- Optional: Company Logo or Image -->
+        <div class="col-12 mb-4 text-center">
+            <img src="~/icons/Mylogo_1.png" alt="Company Logo" width="100">
+        </div>
+        <div class="col-lg-6 mb-5">
+            <div class="card p-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <form method="post" asp-page-handler="Login">
+                            <div class="mb-3">
+                                <label class="form-label" for="LoginInput_Email">EN</label>
+                                <input type="text" class="form-control" asp-for="LoginInput.EN" placeholder="Enter EN">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="LoginInput_Password">Password</label>
+                                <input type="password" class="form-control" asp-for="LoginInput.Password" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                        <form method="post" asp-page-handler="Register">
+                            <div class="mb-3">
+                                <label class="form-label" for="RegisterInput_Email">EN</label>
+                                <input type="email" class="form-control" asp-for="RegisterInput.EN" placeholder="Enter email">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="RegisterInput_Password">Password</label>
+                                <input type="password" class="form-control" asp-for="RegisterInput.Password" placeholder="Create password">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="RegisterInput_ConfirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" asp-for="RegisterInput.Password" placeholder="Confirm password">
+                            </div>
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

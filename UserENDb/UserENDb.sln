@@ -5,9 +5,11 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UserENDb", "UserENDb\UserENDb.sqlproj", "{D79A5177-8D01-481F-99B3-9AC5F4B9EFE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationAccess", "AuthenticationAccess\AuthenticationAccess.csproj", "{7CEF5787-E625-41B1-A0B1-BA258C90307D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationAccess", "AuthenticationAccess\AuthenticationAccess.csproj", "{7CEF5787-E625-41B1-A0B1-BA258C90307D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeAuthenAPI", "EmployeeAuthenAPI\EmployeeAuthenAPI.csproj", "{8A0A2161-94C9-47D4-A9CE-BE55DA1B36AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeAuthenAPI", "EmployeeAuthenAPI\EmployeeAuthenAPI.csproj", "{8A0A2161-94C9-47D4-A9CE-BE55DA1B36AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{B6CDDA6B-C54D-43FC-9680-73E0A37F2534}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{8A0A2161-94C9-47D4-A9CE-BE55DA1B36AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A0A2161-94C9-47D4-A9CE-BE55DA1B36AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A0A2161-94C9-47D4-A9CE-BE55DA1B36AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6CDDA6B-C54D-43FC-9680-73E0A37F2534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6CDDA6B-C54D-43FC-9680-73E0A37F2534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6CDDA6B-C54D-43FC-9680-73E0A37F2534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6CDDA6B-C54D-43FC-9680-73E0A37F2534}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

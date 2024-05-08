@@ -4,6 +4,7 @@
     {
         public static void ApiConfiguration(this WebApplication app)
         {
+            app.MapGet(pattern: "/GetDetail", GetDetail);
             app.MapPost(pattern: "/Register", Register);
             app.MapPost(pattern: "/Login", Login);
         }
@@ -26,6 +27,18 @@
             try
             {
                 return Results.Ok(await authenService.Login(employeeInput));
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
+        public static async Task<IResult> GetDetail(IAuthenService authenService)
+        {
+            try
+            {
+                return Results.Ok(await authenService.GetAllUser());
             }
             catch (Exception ex)
             {

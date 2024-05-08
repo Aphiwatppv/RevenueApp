@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[spRegisterEmployee]
-    @EN NVARCHAR(50),
-    @Name NVARCHAR(50),
-    @Salt NVARCHAR(100),
-    @HashPassword NVARCHAR(100),
+    @EN NVARCHAR(100),
+    @Name NVARCHAR(100),
+    @Salt NVARCHAR(256),
+    @HashPassword NVARCHAR(256),
     @RoleId INT = 99
 AS
 BEGIN
