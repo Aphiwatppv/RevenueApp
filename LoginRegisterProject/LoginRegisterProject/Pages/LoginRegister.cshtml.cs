@@ -30,7 +30,7 @@ namespace LoginRegisterProject.Pages
                 {
                     HttpContext.Session.SetString("UserName", userDetails.Name);
                     HttpContext.Session.SetString("UserEN", userDetails.EN);
-                    return RedirectToPage("/Index"); // or some other page
+                    return RedirectToPage("/PersonalSum"); // or some other page
           
                 }
                 else

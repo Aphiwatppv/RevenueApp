@@ -58,3 +58,101 @@ body {
         background-color: #007bff;
         color: white;
     }
+
+.background-div {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+    overflow: hidden; /* Ensure the pseudo-element is clipped to the parent's bounds */
+}
+
+.background-div::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('../Images/pexels-pixabay-262367.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 1; /* Adjust for desired transparency level, where 1 is fully opaque and 0 is fully transparent */
+        z-index: -1; /* Ensure the background is behind the content */
+}
+
+.navbar {
+    background-color: #333;
+    opacity: 0.75;
+}
+
+.navbar-brand, .nav-link {
+    color: #ddd !important; /* Ensuring high contrast text */
+}
+
+.footer {
+    background-color: #222;
+    color: #ccc;
+}
+
+.btn-primary {
+    background-color: #0062cc;
+    border: none;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+
+}
+
+/*
+    //detail page 
+*/
+
+
+.container {
+    padding-top: 2rem;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 80vh; /* Limiting the view height */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners for modern look */
+    background-color: #ffffff; /* White background for the card */
+    padding: 20px;
+}
+
+.card-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-body p {
+    margin: 5px 0;
+}
+
+.text-success {
+    color: #28a745; /* Green for 'Within Limit' */
+}
+
+.text-warning {
+    color: #ffc107; /* Yellow for 'Out of Limit' */
+}
+
+.text-secondary {
+    color: #6c757d; /* Grey for neutral or unknown status */
+}

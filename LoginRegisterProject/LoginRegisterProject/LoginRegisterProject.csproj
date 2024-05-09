@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="AuthenticationAccess">
       <HintPath>..\..\UserENDb\AuthenticationAccess\bin\Debug\net8.0\AuthenticationAccess.dll</HintPath>
     </Reference>

@@ -67,14 +67,12 @@ namespace AuthenticationAccess.ServiceAuthen
                 }
                 else
                 {
-                    return new EmployeeDetail { Name = $"Can't Encrypt password Salt | {getsalthash?.Salt} Hash | {getsalthash?.HashPassword}" };
+                    return new EmployeeDetail();
                 }
 
             }
-            return new EmployeeDetail
-            {
-                Name = $"Salt or Hash are empty Salt | {getsalthash?.Salt} Hash | {getsalthash?.HashPassword};"
-            };
+            return new EmployeeDetail();
+
 
 
         }

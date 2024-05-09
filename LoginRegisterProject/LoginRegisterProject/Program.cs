@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IAuthApi, AuthApi>();
+builder.Services.AddSingleton<IApi, Api>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
